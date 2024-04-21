@@ -1,0 +1,44 @@
+Q1
+local function releaseStorage(player)
+
+    player:setStorageValue(1000, -1)
+
+end
+
+ 
+
+function onLogout(player)
+
+    local storageValue = player:getStorageValue(1000)
+
+-- I made the player's storage value a local variable to make easier to read in the following if statement
+
+    if storageValue == 1 then
+
+        addEvent(releaseStorage, 1000, player)
+
+                print(player:getPlayerName .. " has been logged out.")
+
+-- added a notification of a successful logout and failure if one would not be provided in the function that physically logs them out
+
+-- based on the function name and boolean output, I think it only checks if the player can log out, and another does it
+
+                return true
+
+-- added an else statement incase there was a problem logging out the player
+
+-- if I understand the code correctly, I think setting the player's storage value to -1 functionally logs them out
+
+-- so calling releaseStorage in the above line should only ever set them to -1
+
+-- but perhaps the 1 second delay could potentially cause some value to change within that time
+
+    else
+
+                print("Error: " .. player:getPlayerName .. " could not be logged out.")
+
+                return false
+
+    end
+
+end

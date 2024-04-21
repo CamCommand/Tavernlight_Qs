@@ -1,0 +1,41 @@
+Q3
+function removePartyMember(playerId, membername)
+-- I renamed the function to better represent the intended use
+
+    local party = Party(playerId) 
+
+    -- Assuming Party is the correct class for party management
+
+ 
+
+    if party then
+
+    -- check if a party exists
+
+        for k, v in pairs(party:getMembers()) do
+
+            if v.name == membername then
+
+            -- only need to compare the names not the player themself
+
+                party:removeMember(v)
+
+                print("Removed member: " .. membername)
+
+                return 
+
+               -- Exit the loop after removing the member
+
+            end
+
+        end
+
+        print("Member " .. membername .. " not found in the party.")
+
+    else
+
+        print("Error: Party not found.")
+
+    end
+
+end
